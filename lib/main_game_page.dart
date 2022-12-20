@@ -28,7 +28,6 @@ THE SOFTWARE. **/
 
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'helpers/direction.dart';
 import 'helpers/joypad.dart';
 import 'ray_world_game.dart';
 
@@ -41,6 +40,7 @@ class MainGamePage extends StatefulWidget {
 
 class MainGameState extends State<MainGamePage> {
   RayWorldGame game = RayWorldGame();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +52,11 @@ class MainGameState extends State<MainGamePage> {
               alignment: Alignment.bottomRight,
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
-                child: Joypad(onDirectionChanged: onJoypadDirectionChanged),
+                child:
+                    Joypad(onDirectionChanged: game.onJoypadDirectionChanged),
               ),
             )
           ],
         ));
-  }
-
-  void onJoypadDirectionChanged(Direction direction) {
-    game.onJoypadDirectionChanged(direction);
   }
 }
